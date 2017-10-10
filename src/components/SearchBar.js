@@ -1,5 +1,7 @@
 import React from 'react'
-
+import 'font-awesome/css/font-awesome.css'
+import './SearchBar.css'
+import PropTypes from 'prop-types'
 class SearchBar extends React.Component{
     
     constructor(){
@@ -18,6 +20,11 @@ class SearchBar extends React.Component{
     )
     }
     
+    handleSubmit = (e)=>
+    {
+        e.preventDefault()
+        this.props.updateSearchTerm(this.state.search)
+    }
 
     render(){
         return (
@@ -32,7 +39,13 @@ class SearchBar extends React.Component{
                         onChange={this.handleSearchChange}
 
                      /> 
-
+                     <button
+                        type="submit"
+                        className="search-button"
+                        onClick={this.handleSubmit}
+                     >
+                        <i className="search-icon fa fa-search"/>
+                    </button>
                 </form>
 
                 
@@ -40,6 +53,10 @@ class SearchBar extends React.Component{
         )
     }
 
+}
+
+PropTypes.PropTypes={
+    updateSearchTerm: PropTypes.func.isRequired
 }
 
 export default SearchBar
